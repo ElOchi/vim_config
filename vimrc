@@ -45,7 +45,7 @@ set undodir=~/.vim/undodir
 set undofile
 set noswapfile
 set colorcolumn=80
-highlight ColorColumn ctermbg=238 guibg=#23272
+"highlight ColorColumn ctermbg=238 guibg=#23272
 
 
 "Show hidden characters, tabs, trailing whitespaces
@@ -54,6 +54,10 @@ set listchars=tab:→\ ,trail:·,nbsp:·
 
 "Plug-ins
 call plug#begin('~/.vim/plugged')
+
+"Plug 'valloric/youcompleteme'
+Plug 'scrooloose/nerdtree'
+
 Plug 'morhetz/gruvbox'
 Plug 'vim-utils/vim-man'
 Plug 'mbbill/undotree'
@@ -69,10 +73,15 @@ set splitbelow splitright
 " Remap escape
 inoremap jk <Esc>
 
-let mapleader = " "
+"NERDTree
+
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd w
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "Remap splits nav to spacebar + hjkl
 
+let mapleader = " "
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
